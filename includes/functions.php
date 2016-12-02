@@ -1,5 +1,5 @@
 <?php
-include_once 'db-config.php';
+include_once 'db_config.php';
 
 function sec_session_start() {
     $session_name = 'sec_session_id';   // Set a custom session name
@@ -30,8 +30,8 @@ function sec_session_start() {
 
 function login($voterID, $voterKey, $mysqli) {
     // Using prepared statements means that SQL injection is not possible.
-    if ($stmt = $mysqli->prepare("SELECT voterID, voterKey, hasLoggedIn
-        FROM voters
+    if ($stmt = $mysqli->prepare("SELECT adminID, voterID, voterKey
+        FROM voterinfo
        WHERE voterID = ?
         LIMIT 1")) {
         $stmt->bind_param('s', $voterID);  // Bind "$email" to parameter.
@@ -39,20 +39,17 @@ function login($voterID, $voterKey, $mysqli) {
         $stmt->store_result();
 
         // get variables from result.
-        $stmt->bind_result($db_voterID, $db_voterKey, $hasLoggedIn);
+        $stmt->bind_result($adminID, $voterID, $db_voterKey);
         $stmt->fetch();
 
         if ($stmt->num_rows == 1) {
             // If the user exists we check if the account is locked
             // from too many login attempts
 
-            if (checkbrute($db_voterID, $mysqli) == true) {
+            if (checkbrute($voterID, $mysqli) == true) {
                 // Account is locked
                 // Send an email to user saying their account is locked
                 return false;
-              }else if($hasLoggedIn == true){
-              //id has logged in already, cant log in again
-                  return false;
             } else {
                 // Check if the password in the database matches
                 // the password the user submitted. We are using
@@ -62,12 +59,15 @@ function login($voterID, $voterKey, $mysqli) {
                     // Get the user-agent string of the user.
                     $user_browser = $_SERVER['HTTP_USER_AGENT'];
                     // XSS protection as we might print this value
-                    $user_id = preg_replace("/[^0-9]+/", "", $user_id);
-                    $_SESSION['user_id'] = $voterID;
+                    $adminID = preg_replace("/[^0-9]+/", "", $adminID);
+                    $_SESSION['adminID'] = $adminID;
                     // XSS protection as we might print this value
-
+                    $voterID = preg_replace("/[^a-zA-Z0-9_\-]+/",
+                                                                "",
+                                                                $voterID);
+                    $_SESSION['voterID'] = $voterID;
                     $_SESSION['login_string'] = hash('sha512',
-                              $db_voterKey . $user_browser);
+                              $db_password . $user_browser);
                     // Login successful.
                     return true;
                 } else {
@@ -85,6 +85,7 @@ function login($voterID, $voterKey, $mysqli) {
         }
     }
 }
+
 function checkbrute($voterID, $mysqli) {
     // Get timestamp of current time
     $now = time();
@@ -113,18 +114,20 @@ function checkbrute($voterID, $mysqli) {
 
 function login_check($mysqli) {
     // Check if all session variables are set
-    if (isset($_SESSION['voterID'],
+    if (isset($_SESSION['adminID'],
+                        $_SESSION['voterID'],
                         $_SESSION['login_string'])) {
 
-        $user_id = $_SESSION['user_id'];
+        $adminID = $_SESSION['adminID'];
         $login_string = $_SESSION['login_string'];
+        $voterID = $_SESSION['voterID'];
 
         // Get the user-agent string of the user.
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
-        if ($stmt = $mysqli->prepare("SELECT voterKey, hasLoggedIn
-                                      FROM voters
-                                      WHERE id = ? LIMIT 1")) {
+        if ($stmt = $mysqli->prepare("SELECT voterKey
+                                      FROM voterInfo
+                                      WHERE voterID = ? LIMIT 1")) {
             // Bind "$user_id" to parameter.
             $stmt->bind_param('i', $voterID);
             $stmt->execute();   // Execute the prepared query.
@@ -132,11 +135,11 @@ function login_check($mysqli) {
 
             if ($stmt->num_rows == 1) {
                 // If the user exists get variables from result.
-                $stmt->bind_result($voterKey, $hasLoggedIn);
+                $stmt->bind_result($voterKey);
                 $stmt->fetch();
                 $login_check = hash('sha512', $voterKey . $user_browser);
 
-                if (hash_equals($login_check, $login_string) && )$hasLoggedIn == 0)){
+                if (hash_equals($login_check, $login_string) ){
                     // Logged In!!!!
                     return true;
                 } else {
@@ -156,6 +159,7 @@ function login_check($mysqli) {
         return false;
     }
 }
+
 function esc_url($url) {
 
     if ('' == $url) {
@@ -186,3 +190,5 @@ function esc_url($url) {
         return $url;
     }
 }
+
+?>

@@ -9,7 +9,7 @@ if (isset($_POST['voterID'], $_POST['k'])) {
     $voterKey = $_POST['k']; // The hashed password.
 
     if (login($voterID, $voterKey, $mysqli) == true) {
-        // Login success
+        // Login success 
         header('Location: ../protected_page.php');
     } else {
         // Login failed
@@ -19,3 +19,5 @@ if (isset($_POST['voterID'], $_POST['k'])) {
     // The correct POST variables were not sent to this page.
     echo 'Invalid Request';
 }
+
+?>
