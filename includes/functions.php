@@ -31,7 +31,7 @@ function sec_session_start() {
 function login($voterID, $voterKey, $mysqli) {
     // Using prepared statements means that SQL injection is not possible.
     if ($stmt = $mysqli->prepare("SELECT adminID, voterID, voterKey
-        FROM voterinfo
+        FROM voters
        WHERE voterID = ?
         LIMIT 1")) {
         $stmt->bind_param('s', $voterID);  // Bind "$email" to parameter.
@@ -126,7 +126,7 @@ function login_check($mysqli) {
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
         if ($stmt = $mysqli->prepare("SELECT voterKey
-                                      FROM voterInfo
+                                      FROM voters
                                       WHERE voterID = ? LIMIT 1")) {
             // Bind "$user_id" to parameter.
             $stmt->bind_param('i', $voterID);

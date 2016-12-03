@@ -10,7 +10,7 @@ include_once 'includes/functions.php';
         <script type="text/JavaScript" src="scripts/sha512.js"></script>
         <script type="text/JavaScript" src="scripts/forms.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles/main.css" />
+        <link rel="stylesheet" href="stylesheets/main.css" />
     </head>
     <body>
         <!-- Registration form to be output if the POST variables are not
