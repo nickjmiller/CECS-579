@@ -67,7 +67,7 @@ function login($voterID, $voterKey, $mysqli) {
                                                                 $voterID);
                     $_SESSION['voterID'] = $voterID;
                     $_SESSION['login_string'] = hash('sha512',
-                              $db_password . $user_browser);
+                              $db_voterKey);
                     // Login successful.
                     return true;
                 } else {
@@ -135,8 +135,8 @@ function login_check($mysqli) {
                 // If the user exists get variables from result.
                 $stmt->bind_result($voterKey);
                 $stmt->fetch();
-                $login_check = hash('sha512', $voterKey . $user_browser);
-
+                $login_check = hash('sha512', $voterKey);
+		//echo $login_check , ":  " , $login_string;
                 if (hash_equals($login_check, $login_string) ){
                     // Logged In!!!!
                     return true;
