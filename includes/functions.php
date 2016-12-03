@@ -114,11 +114,9 @@ function checkbrute($voterID, $mysqli) {
 
 function login_check($mysqli) {
     // Check if all session variables are set
-    if (isset($_SESSION['adminID'],
-                        $_SESSION['voterID'],
+    if (isset($_SESSION['voterID'],
                         $_SESSION['login_string'])) {
 
-        $adminID = $_SESSION['adminID'];
         $login_string = $_SESSION['login_string'];
         $voterID = $_SESSION['voterID'];
 
