@@ -9,11 +9,11 @@ if (isset($_POST['voterID'], $_POST['k'])) {
     $voterID = filter_input(INPUT_POST, 'voterID', FILTER_SANITIZE_STRING);
 
     $voterKey = filter_input(INPUT_POST, 'k', FILTER_SANITIZE_STRING);
-    if (strlen($voteKey) != 128) {
+    //if (strlen($voteKey) != 128) {
         // The hashed pwd should be 128 characters long.
         // If it's not, something really odd has happened
-        $error_msg .= '<p class="error">Invalid key configuration.</p>';
-    }
+       // $error_msg .= '<p class="error">Invalid key configuration.</p>';
+   // }
 
     // Username validity and password validity have been checked client side.
     // This should should be adequate as nobody gains any advantage from
