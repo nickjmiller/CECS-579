@@ -6,7 +6,7 @@ function sec_session_start() {
     /*Sets the session name.
      *This must come before session_set_cookie_params due to an undocumented bug/feature in PHP.
      */
-    session_name($session_name);
+ 
 
     $secure = SECURE;
     // This stops JavaScript being able to access the session id.
@@ -24,6 +24,7 @@ function sec_session_start() {
         $secure,
         $httponly);
 
+    session_name($session_name);
     session_start();            // Start the PHP session
     session_regenerate_id(true);    // regenerated the session, delete the old one.
 }
@@ -58,9 +59,7 @@ function login($voterID, $voterKey, $mysqli) {
                     // Password is correct!
                     // Get the user-agent string of the user.
                     $user_browser = $_SERVER['HTTP_USER_AGENT'];
-                    // XSS protection as we might print this value
-                    $adminID = preg_replace("/[^0-9]+/", "", $adminID);
-                    $_SESSION['adminID'] = $adminID;
+                    // XSS protection as we might print this valu
                     // XSS protection as we might print this value
                     $voterID = preg_replace("/[^a-zA-Z0-9_\-]+/",
                                                                 "",
@@ -74,7 +73,7 @@ function login($voterID, $voterKey, $mysqli) {
                     // Password is not correct
                     // We record this attempt in the database
                     $now = time();
-                    $mysqli->query("INSERT INTO login_attempts(voterID, time)
+                    $mysqli->query("INSERT INTO loginAttempts(voterID, time)
                                     VALUES ('$voterID', '$now')");
                     return false;
                 }
