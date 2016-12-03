@@ -58,9 +58,7 @@ function login($voterID, $voterKey, $mysqli) {
                     // Password is correct!
                     // Get the user-agent string of the user.
                     $user_browser = $_SERVER['HTTP_USER_AGENT'];
-                    // XSS protection as we might print this value
-                    $adminID = preg_replace("/[^0-9]+/", "", $adminID);
-                    $_SESSION['adminID'] = $adminID;
+                    // XSS protection as we might print this valu
                     // XSS protection as we might print this value
                     $voterID = preg_replace("/[^a-zA-Z0-9_\-]+/",
                                                                 "",
