@@ -6,7 +6,7 @@ function formhash(form, voterKey) {
     form.appendChild(k);
     k.name = "k";
     k.type = "hidden";
-    k.value = hex_sha512(password.value);
+    k.value = hex_sha512(voterKey.value);
 
     // Make sure the plaintext password doesn't get sent.
     voterKey.value = "";
