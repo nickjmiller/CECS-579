@@ -6,7 +6,7 @@ function sec_session_start() {
     /*Sets the session name.
      *This must come before session_set_cookie_params due to an undocumented bug/feature in PHP.
      */
-    session_name($session_name);
+ 
 
     $secure = SECURE;
     // This stops JavaScript being able to access the session id.
@@ -24,6 +24,7 @@ function sec_session_start() {
         $secure,
         $httponly);
 
+    session_name($session_name);
     session_start();            // Start the PHP session
     session_regenerate_id(true);    // regenerated the session, delete the old one.
 }
