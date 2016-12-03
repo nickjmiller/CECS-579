@@ -1,15 +1,15 @@
-function formhash(form, password) {
+function formhash(form, voterKey) {
     // Create a new element input, this will be our hashed password field.
-    var p = document.createElement("input");
+    var k = document.createElement("input");
 
     // Add the new element to our form.
-    form.appendChild(p);
-    p.name = "p";
-    p.type = "hidden";
-    p.value = hex_sha512(password.value);
+    form.appendChild(k);
+    k.name = "k";
+    k.type = "hidden";
+    k.value = hex_sha512(password.value);
 
     // Make sure the plaintext password doesn't get sent.
-    password.value = "";
+    voterKey.value = "";
 
     // Finally submit the form.
     form.submit();
@@ -34,13 +34,13 @@ function regformhash(form, voterID, voterKey, conf) {
     }
 
     // Create a new element input, this will be our hashed password field.
-    var p = document.createElement("input");
+    var k = document.createElement("input");
 
     // Add the new element to our form.
-    form.appendChild(p);
-    p.name = "p";
-    p.type = "hidden";
-    p.value = hex_sha512(voterKey.value);
+    form.appendChild(k);
+    k.name = "k";
+    k.type = "hidden";
+    k.value = hex_sha512(voterKey.value);
 
     // Make sure the plaintext password doesn't get sent.
     voterKey.value = "";
