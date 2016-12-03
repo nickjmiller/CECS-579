@@ -8,7 +8,7 @@ function sec_session_start() {
      */
     session_name($session_name);
 
-    $secure = true;
+    $secure = SECURE;
     // This stops JavaScript being able to access the session id.
     $httponly = true;
     // Forces sessions to only use cookies.
