@@ -74,7 +74,7 @@ function login($voterID, $voterKey, $mysqli) {
                     // Password is not correct
                     // We record this attempt in the database
                     $now = time();
-                    $mysqli->query("INSERT INTO login_attempts(voterID, time)
+                    $mysqli->query("INSERT INTO loginAttempts(voterID, time)
                                     VALUES ('$voterID', '$now')");
                     return false;
                 }
