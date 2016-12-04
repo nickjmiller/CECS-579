@@ -1,6 +1,7 @@
 .form{
   margin: 50px 0 0 0; 
   text-align: center;
-  border-style: outset;
+  border-style: groove;
   background: #ededed;
+  width: 50%;
 }
