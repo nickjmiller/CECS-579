@@ -34,7 +34,7 @@ if (login_check($mysqli) == true) {
                              id="voterKey"/> <br><br><br>
             <input type="button"
                    value="Login"
-                   onclick="formhash(this.form, this.form.voterKey);" />
+                   onclick="formhash(this.form, this.form.voterKey);" /> <br><br>
         </form>
         </div>
 
