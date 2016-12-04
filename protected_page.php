@@ -34,9 +34,9 @@ sec_session_start();
                             <input type="radio" name="prop" value="1"> Yes <br>
                             <input type="radio" name="prop" value="2"> No <br>
                             <input type="radio" name="prop" value="0"> Abstain<br>
-                        </fieldset>
+                        </fieldset><br>
                     <input type="submit"
-                           value="Vote" />
+                           value="Vote" /><br><br>
                     </form>
                     <?php endif;?>
         </div>
