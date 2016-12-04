@@ -26,6 +26,7 @@ if (login_check($mysqli) == true) {
         }
         ?>
         <div class="form">
+        <img src="stylesheets/securevote_logo.png" alt="logo"> 
         <form action="includes/process_login.php" method="post" name="login_form">
             VoterID: <input type="text" name="voterID" /> <br><br>
             VoterKey: <input type="password"
@@ -40,11 +41,11 @@ if (login_check($mysqli) == true) {
 <?php
         if (login_check($mysqli) == true) {
                         echo '<p>Currently logged ' . $logged . ' as ' . htmlentities($_SESSION['voterID']) . '.</p>';
-            echo '<p>Go to the <a href="protected_page.php">voting</a> page.</p>';
-            echo '<p>Do you want to change user? <a href="includes/logout.php">Log out</a>.</p>';
+            echo '<div class="info"><p>Go to the <a href="protected_page.php">voting</a> page.</p>';
+            echo '<p>Do you want to change user? <a href="includes/logout.php">Log out</a>.</p></div>';
         } else {
-                        echo '<p>Currently logged ' . $logged . '.</p>';
-                        echo "<p>If you don't have a login, please visit your DMV to register";
+                        echo '<div class="info"><p>Currently logged ' . $logged . '.</p>';
+                        echo "<p>If you don't have a login, please visit your DMV to register. </p></div>";
                 }
 ?>
     </body>
