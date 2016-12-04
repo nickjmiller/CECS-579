@@ -25,6 +25,7 @@ if (login_check($mysqli) == true) {
             echo '<p class="error">Error Logging In!</p>';
         }
         ?>
+        <div class="form">
         <form action="includes/process_login.php" method="post" name="login_form">
             VoterID: <input type="text" name="voterID" />
             voterKey: <input type="password"
@@ -34,6 +35,7 @@ if (login_check($mysqli) == true) {
                    value="Login"
                    onclick="formhash(this.form, this.form.voterKey);" />
         </form>
+        </div>
 
 <?php
         if (login_check($mysqli) == true) {
