@@ -16,10 +16,11 @@ sec_session_start();
         <?php if (login_check($mysqli) == true) : ?>
             <p>Welcome <?php echo htmlentities($_SESSION['voterID']); ?>!</p>
             <p>
-                This is an example protected page.  To access this page, users
-                must be logged in.  At some stage, we'll also check the role of
-                the user, so pages will be able to determine the type of user
-                authorised to access the page.
+                <?php if(voted_check($mysqli) == true): ?>
+                    <p>Thanks for voting. View the results here!</p>
+                <?php else : ?>
+                    <p> You still have to vote! </p>
+                <?php endif;?>
             </p>
             <p>Return to <a href="index.php">login page</a></p>
         <?php else : ?>
