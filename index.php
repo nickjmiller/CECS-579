@@ -27,10 +27,10 @@ if (login_check($mysqli) == true) {
         ?>
         <div class="form">
         <form action="includes/process_login.php" method="post" name="login_form">
-            VoterID: <input type="text" name="voterID" />
-            voterKey: <input type="password"
+            VoterID: <input type="text" name="voterID" /> <br><br>
+            VoterKey: <input type="password"
                              name="voterKey"
-                             id="voterKey"/>
+                             id="voterKey"/> <br><br><br>
             <input type="button"
                    value="Login"
                    onclick="formhash(this.form, this.form.voterKey);" />
