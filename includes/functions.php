@@ -157,6 +157,29 @@ function login_check($mysqli) {
     }
 }
 
+function voted_check($mysqli){
+	$voterID = $_SESSION['voterID'];
+	if ($stmt = $mysqli->prepare("SELECT hasVoted
+                                      FROM voters
+                                      WHERE voterID = ? LIMIT 1")) {
+            // Bind "$user_id" to parameter.
+            $stmt->bind_param('i', $voterID);
+            $stmt->execute();   // Execute the prepared query.
+            $stmt->store_result();
+		
+		if ($stmt->num_rows == 1) {
+                // If the user exists get variables from result.
+                $stmt->bind_result($hasVoted);
+                $stmt->fetch();
+			if($hasVoted == 1){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+}
+
 function esc_url($url) {
 
     if ('' == $url) {
