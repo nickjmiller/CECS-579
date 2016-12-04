@@ -20,8 +20,24 @@ sec_session_start();
                     <p>Thanks for voting. View the results here!</p>
                 <?php else : ?>
                     <p> You still have to vote! </p>
-                <?php endif;?>
+                    <form action="includes/process_vote.php" method="post" name="vote_form">
+                        <fieldset>
+                            <h2> Choice for President</h2>
+                            <input type="radio" name="pres" value="1"> Candidate 1<br>
+                            <input type="radio" name="pres" value="2"> Candidate 2<br>
+                            <input type="radio" name="pres" value="0"> Abstain <br><br>
+                        </fieldset>
+                        <fieldset>
+                            <h2> Choice for Propsition 1 </h2>
+                            <input type="radio" name="prop" value="1"> Yes <br>
+                            <input type="radio" name="prop" value="2"> No <br>
+                            <input type="radio" name="prop" value="0"> Abstain<br>
+                        </fieldset>
+                    <input type="button"
+                           value="Vote" />
+                    </form>
             </p>
+                    <?php endif;?>
             <p>Return to <a href="index.php">login page</a></p>
         <?php else : ?>
             <p>
