@@ -40,8 +40,8 @@ if (login_check($mysqli) == true) {
 
 <?php
         if (login_check($mysqli) == true) {
-                        echo '<p>Currently logged ' . $logged . ' as ' . htmlentities($_SESSION['voterID']) . '.</p>';
-            echo '<div class="info"><p>Go to the <a href="protected_page.php">voting</a> page.</p>';
+            echo '<div class="info"><p>Currently logged ' . $logged . ' as ' . htmlentities($_SESSION['voterID']) . '.</p>';
+            echo '<p>Go to the <a href="protected_page.php">voting</a> page.</p>';
             echo '<p>Do you want to change user? <a href="includes/logout.php">Log out</a>.</p></div>';
         } else {
                         echo '<div class="info"><p>Currently logged ' . $logged . '.</p>';
