@@ -14,12 +14,14 @@ sec_session_start();
     </head>
     <body>
         <?php if (login_check($mysqli) == true) : ?>
+            <div class="info">
             <p>Welcome <?php echo htmlentities($_SESSION['voterID']); ?>!</p>
-            <p>
                 <?php if(voted_check($mysqli) == true): ?>
                     <p>Thanks for voting. View the results here!</p>
                 <?php else : ?>
                     <p> You still have to vote! </p>
+            </div>
+            <div class="form">
                     <form action="includes/process_vote.php" method="post" name="vote_form">
                         <fieldset>
                             <h2> Choice for President</h2>
@@ -36,13 +38,15 @@ sec_session_start();
                     <input type="submit"
                            value="Vote" />
                     </form>
-            </p>
                     <?php endif;?>
+        </div>
+        <div class="info">
             <p>Return to <a href="index.php">login page</a></p>
         <?php else : ?>
             <p>
                 <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.
             </p>
         <?php endif; ?>
+        </div>
     </body>
 </html>
