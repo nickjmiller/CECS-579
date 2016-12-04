@@ -47,7 +47,7 @@ if (isset($_POST['pres'], $_POST['prop'])) {
       $statement = $mysqli->prepare("UPDATE voterInfo SET hasVoted=? WHERE voterID=?");
 
         //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
-        $statement->bind_param('ii', 1, $voterID);
+        $statement->bind_param('is', 1, $voterID);
         $results =  $statement->execute();
       
     header('Location: ../protected_page.php');
