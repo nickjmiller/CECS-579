@@ -41,6 +41,8 @@ sec_session_start();
                     <?php endif;?>
         </div>
         <div class="info">
+            
+            <p><a href="includes/logout.php">Log out</a></p>
             <p>Return to <a href="index.php">login page</a></p>
         <?php else : ?>
             <p>
