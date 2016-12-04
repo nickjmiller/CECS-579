@@ -44,7 +44,7 @@ if (isset($_POST['pres'], $_POST['prop'])) {
                 header('Location: ../error.php?err=vote failure: INSERT');
             }
       }
-      $statement = $mysqli->prepare("UPDATE voterInfo SET hasVoted=? WHERE voterID=?");
+      $statement = $mysqli->prepare("UPDATE voters SET hasVoted=? WHERE voterID=?");
 
         //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
         $statement->bind_param('is', 1, $voterID);
