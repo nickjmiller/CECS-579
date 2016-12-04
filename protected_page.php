@@ -33,7 +33,7 @@ sec_session_start();
                             <input type="radio" name="prop" value="2"> No <br>
                             <input type="radio" name="prop" value="0"> Abstain<br>
                         </fieldset>
-                    <input type="button"
+                    <input type="submit"
                            value="Vote" />
                     </form>
             </p>
