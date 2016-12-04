@@ -12,13 +12,14 @@ if (isset($_POST['pres'], $_POST['prop'])) {
       if ($stmt = $mysqli->prepare("SELECT adminID
                                 FROM voters
                                 WHERE voterID = ? LIMIT 1")) {
-      $stmt->bind_param('i', $voterID);
-      $stmt->execute();   // Execute the prepared query.
-      $stmt->store_result();
-      if ($stmt->num_rows == 1) {
-        // If the user exists get variables from result.
-        $stmt->bind_result($adminID);
-        $stmt->fetch();
+          $stmt->bind_param('i', $voterID);
+          $stmt->execute();   // Execute the prepared query.
+          $stmt->store_result();
+          if ($stmt->num_rows == 1) {
+            // If the user exists get variables from result.
+            $stmt->bind_result($adminID);
+            $stmt->fetch();
+          }
       }
       
       //process vote
