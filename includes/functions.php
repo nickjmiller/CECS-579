@@ -94,7 +94,7 @@ function checkbrute($voterID, $mysqli) {
     $valid_attempts = $now - (2 * 60 * 60);
 
     if ($stmt = $mysqli->prepare("SELECT time
-                             FROM login_attempts
+                             FROM loginAttempts
                              WHERE voterID = ?
                             AND time > '$valid_attempts'")) {
         $stmt->bind_param('i', $voterID);
