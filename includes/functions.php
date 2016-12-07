@@ -35,7 +35,7 @@ function login($voterID, $voterKey, $mysqli) {
         FROM voters
        WHERE voterID = ?
         LIMIT 1")) {
-        $stmt->bind_param('s', $voterID);  // Bind "$email" to parameter.
+        $stmt->bind_param('s', $voterID);  // Bind "$voterID" to parameter.
         $stmt->execute();    // Execute the prepared query.
         $stmt->store_result();
 
@@ -72,7 +72,7 @@ function login($voterID, $voterKey, $mysqli) {
                 } else {
                     // Password is not correct
                     // We record this attempt in the database
-		$mysqli->query("INSERT INTO login_attempts(voterID)
+		$mysqli->query("INSERT INTO loginAttempts(voterID)
                                     VALUES ('$voterID')");
 		    
                     return false;
