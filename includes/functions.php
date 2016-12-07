@@ -93,10 +93,10 @@ function checkbrute($voterID, $mysqli) {
     // All login attempts are counted from the past 2 hours.
     $valid_attempts = $now - (2 * 60 * 60);
 
-    if ($stmt = $mysqli->prepare("SELECT time
+    if ($stmt = $mysqli->prepare("SELECT timer
                              FROM loginAttempts
                              WHERE voterID = ?
-                            AND time > '$valid_attempts'")) {
+                            AND timer > '$valid_attempts'")) {
         $stmt->bind_param('i', $voterID);
 
         // Execute the prepared query.
