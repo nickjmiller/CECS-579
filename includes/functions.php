@@ -73,9 +73,10 @@ function login($voterID, $voterKey, $mysqli) {
                     // Password is not correct
                     // We record this attempt in the database
                     $stmt = $mysqli->prepare("INSERT INTO loginAttempts(voterID)
-                                    VALUES (?)");
+                                    VALUES (?)"){
 					$stmt->bind_param("s",$voterID);
 					$stmt->execute();
+		    }
                     return false;
                 }
             }
