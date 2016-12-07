@@ -102,9 +102,9 @@ function checkbrute($voterID, $mysqli) {
         // Execute the prepared query.
         $stmt->execute();
         $stmt->store_result();
-
+	$num_rows = my_sql_num_rows($stmt);
         // If there have been more than 5 failed logins
-        if ($stmt->num_rows > 5) {
+        if ($num_rows > 5) {
             return true;
         } else {
             return false;
