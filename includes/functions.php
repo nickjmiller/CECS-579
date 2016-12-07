@@ -76,8 +76,9 @@ function login($voterID, $voterKey, $mysqli) {
                                     VALUES (?)"){
 					$stmt->bind_param("s",$voterID);
 					$stmt->execute();
-		    }
+		    
                     return false;
+		    }
                 }
             }
         } else {
